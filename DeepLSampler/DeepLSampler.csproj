@@ -79,6 +79,8 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="PluginResources.resx" />
+    <EmbeddedResource Include="band_aid.ico" />
+    <EmbeddedResource Include="band_aid.png" />
     <Content Include="pluginpackage.manifest.xml" />
   </ItemGroup>
   <ItemGroup>

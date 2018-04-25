@@ -11,7 +11,7 @@ namespace DeepLSampler
     [TranslationProviderFactory(Id = "Translation_Provider_Plug_inFactory",
                                 Name = "Translation_Provider_Plug_inFactory",
                                 Description = "Translation_Provider_Plug_inFactory")]
-    class MyTranslationProviderFactory : ITranslationProviderFactory
+    class DeepLSamplerFactory : ITranslationProviderFactory
     {
         #region ITranslationProviderFactory Members
 

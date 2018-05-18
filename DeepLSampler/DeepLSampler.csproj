@@ -72,13 +72,21 @@
     <Compile Include="DeepLSpider.cs" />
     <Compile Include="MyTranslationProviderWinFormsUI.cs" />
     <Compile Include="MyTranslationProviderLanguageDirection.cs" />
-    <Compile Include="MyTranslationProvider.cs" />
-    <Compile Include="DeepLSamplerFactory.cs" />
+    <Compile Include="DeepLSamplerTranslationProvider.cs" />
+    <Compile Include="DeepLSamplerTranslationProviderFactory.cs" />
+    <Compile Include="PluginResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PluginResources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\PluginProperties.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="PluginResources.resx" />
+    <EmbeddedResource Include="PluginResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>PluginResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="band_aid.ico" />
     <EmbeddedResource Include="band_aid.png" />
     <Content Include="pluginpackage.manifest.xml" />

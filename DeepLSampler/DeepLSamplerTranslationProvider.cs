@@ -8,8 +8,28 @@ using Sdl.LanguagePlatform.TranslationMemoryApi;
 
 namespace DeepLSampler
 {
-    class MyTranslationProvider : ITranslationProvider
+    class DeepLSamplerTranslationProvider : ITranslationProvider
     {
+
+
+        /// This string needs to be a unique value.
+        /// This is the string that precedes the plug-in URI.
+        public static readonly string DeepLSamplerTranslationProviderScheme = "deeplsamplerprovider";
+
+        public DeepLSamplerTranslationOptions Options
+        {
+            get;
+            set;
+        }
+
+        public DeepLSamplerTranslationProvider(DeepLSamplerTranslationOptions options)
+        {
+            Options = options;
+        }
+
+
+
+
         #region ITranslationProvider Members
 
         public ITranslationProviderLanguageDirection GetLanguageDirection(LanguagePair languageDirection)

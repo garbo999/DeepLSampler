@@ -69,8 +69,14 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DeepLSamplerProviderConfDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DeepLSamplerProviderConfDialog.Designer.cs">
+      <DependentUpon>DeepLSamplerProviderConfDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="DeepLSpider.cs" />
-    <Compile Include="MyTranslationProviderWinFormsUI.cs" />
+    <Compile Include="DeepLSamplerTranslationProviderWinFormsUI.cs" />
     <Compile Include="MyTranslationProviderLanguageDirection.cs" />
     <Compile Include="DeepLSamplerTranslationProvider.cs" />
     <Compile Include="DeepLSamplerTranslationProviderFactory.cs" />
@@ -83,6 +89,11 @@
     <Compile Include="Properties\PluginProperties.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\band_aid_icon.ico" />
+    <None Include="Resources\band_aid_icon.bmp" />
+    <EmbeddedResource Include="DeepLSamplerProviderConfDialog.resx">
+      <DependentUpon>DeepLSamplerProviderConfDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PluginResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>PluginResources.Designer.cs</LastGenOutput>

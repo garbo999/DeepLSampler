@@ -76,17 +76,24 @@ namespace DeepLSampler
 
         public bool SupportsTranslationProviderUri(Uri translationProviderUri)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
+            if (translationProviderUri == null)
+            {
+                throw new ArgumentNullException("URI not supported by the plug-in.");
+            }
+            return String.Equals(translationProviderUri.Scheme, DeepLSamplerTranslationProvider.DeepLSamplerTranslationProviderScheme, StringComparison.CurrentCultureIgnoreCase);
         }
 
         public string TypeDescription
         {
-            get { throw new NotImplementedException(); }
+            //get { throw new NotImplementedException(); }
+            get { return PluginResources.Plugin_Description; }
         }
 
         public string TypeName
         {
-            get { throw new NotImplementedException(); }
+            //get { throw new NotImplementedException(); }
+            get { return PluginResources.Plugin_NiceName; }
         }
 
         #endregion

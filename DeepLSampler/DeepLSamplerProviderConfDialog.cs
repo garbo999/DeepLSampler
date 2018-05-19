@@ -22,6 +22,23 @@ namespace DeepLSampler
 
         }
 
+        public DeepLSamplerTranslationOptions Options
+        {
+            get;
+            set;
+        }
+
+        private void UpdateDialog()
+        {
+            //txt_ListFile.Text = Options.ListFileName;
+            //combo_Delimiter.Text = Options.Delimiter;
+        }
+
+        private void DeepLSamplerProviderConfDialog_Load(object sender, EventArgs e)
+        {
+
+        }
+
         private void btn_OK_Click(object sender, EventArgs e)
         {
 

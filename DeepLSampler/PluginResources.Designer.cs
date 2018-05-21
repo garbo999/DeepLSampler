@@ -61,6 +61,26 @@ namespace DeepLSampler {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        public static System.Drawing.Icon band_aid_icon {
+            get {
+                object obj = ResourceManager.GetObject("band_aid_icon", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap band_aid_symbol {
+            get {
+                object obj = ResourceManager.GetObject("band_aid_symbol", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to A translation provider plug-in for trying out the DeepL machine translation engine.
         /// </summary>
         public static string Plugin_Description {

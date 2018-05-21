@@ -20,6 +20,26 @@ namespace DeepLSampler
             InitializeComponent();
             UpdateDialog();
 
+
+
+
+            string source_lang = "DE";
+            string target_lang = "IT";
+
+            DeepLSpider deepL = new DeepLSpider(source_lang, target_lang);
+            deepL.setLanguages(source_lang, target_lang);
+            deepL.setLanguages("FR", "PL");
+            deepL.setLanguages("IT", "ES");
+            deepL.setLanguages("EN", "DE");
+
+            //Console.WriteLine("translation is: " + deepL.translateText("i think i hit the jackpot today"));
+            //Console.WriteLine("translation is: " + deepL.translateText("i have to go pick up my kids at school right now"));
+            //Console.WriteLine("translation is: " + deepL.translateText("i just got back from picking up my kids at school and now i have to go to the optometrist"));
+
+            textBox1.Text = "i think i hit the jackpot today";
+            textBox2.Text = deepL.translateText("i think i hit the jackpot today");
+
+
         }
 
         public DeepLSamplerTranslationOptions Options

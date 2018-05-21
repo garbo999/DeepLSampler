@@ -5,4 +5,8 @@
   <Description>Plugin description</Description>
   <Author></Author>
   <RequiredProduct name="SDLTradosStudio" minversion="14.0" />
+  <Include>
+    <File>geckodriver.exe</File>
+    <File>WebDriver.dll</File>
+  </Include>
 </PluginPackage>

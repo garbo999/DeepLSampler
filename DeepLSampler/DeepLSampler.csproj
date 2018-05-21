@@ -78,7 +78,7 @@
     <Compile Include="DeepLSamplerTranslationOptions.cs" />
     <Compile Include="DeepLSpider.cs" />
     <Compile Include="DeepLSamplerTranslationProviderWinFormsUI.cs" />
-    <Compile Include="MyTranslationProviderLanguageDirection.cs" />
+    <Compile Include="DeepLSamplerTranslationProviderLanguageDirection.cs" />
     <Compile Include="DeepLSamplerTranslationProvider.cs" />
     <Compile Include="DeepLSamplerTranslationProviderFactory.cs" />
     <Compile Include="PluginResources.Designer.cs">
@@ -90,8 +90,14 @@
     <Compile Include="Properties\PluginProperties.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="geckodriver.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\band_aid.ico" />
     <Content Include="Resources\band_aid.png" />
+    <Content Include="WebDriver.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <EmbeddedResource Include="DeepLSamplerProviderConfDialog.resx">
       <DependentUpon>DeepLSamplerProviderConfDialog.cs</DependentUpon>
     </EmbeddedResource>

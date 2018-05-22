@@ -12,6 +12,8 @@ namespace DeepLSampler
 {
     public partial class DeepLSamplerProviderConfDialog : Form
     {
+        public static DeepLSpider deepL = new DeepLSpider();
+
         //public DeepLSamplerProviderConfDialog()
         public DeepLSamplerProviderConfDialog(DeepLSamplerTranslationOptions options)
 
@@ -23,14 +25,13 @@ namespace DeepLSampler
 
 
 
-            string source_lang = "DE";
+            string source_lang = "EN";
             string target_lang = "IT";
 
-            DeepLSpider deepL = new DeepLSpider(source_lang, target_lang);
             deepL.setLanguages(source_lang, target_lang);
-            deepL.setLanguages("FR", "PL");
-            deepL.setLanguages("IT", "ES");
-            deepL.setLanguages("EN", "DE");
+            //deepL.setLanguages("FR", "PL");
+            //deepL.setLanguages("IT", "ES");
+            //deepL.setLanguages("EN", "DE");
 
             //Console.WriteLine("translation is: " + deepL.translateText("i think i hit the jackpot today"));
             //Console.WriteLine("translation is: " + deepL.translateText("i have to go pick up my kids at school right now"));
@@ -41,6 +42,8 @@ namespace DeepLSampler
 
 
         }
+
+        //public DeepLSpider DeepL { get; set; }
 
         public DeepLSamplerTranslationOptions Options
         {
@@ -67,6 +70,11 @@ namespace DeepLSampler
         private void btn_Cancel_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            textBox2.Text = deepL.translateText(textBox1.Text);
         }
     }
 }

@@ -78,8 +78,7 @@ namespace DeepLSampler
         {
             //get { throw new NotImplementedException(); }
 
-            // get { return true; }
-            get { return false; } // have to think about this!!!
+            get { return false; } // no concordance search for MT provider!!!
         }
 
         public bool SupportsDocumentSearches

@@ -76,6 +76,7 @@
       <DependentUpon>DeepLSamplerProviderConfDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="DeepLSamplerTranslationOptions.cs" />
+    <Compile Include="DeepLSamplerTranslationProviderElementVisitor.cs" />
     <Compile Include="DeepLSpider.cs" />
     <Compile Include="DeepLSamplerTranslationProviderWinFormsUI.cs" />
     <Compile Include="DeepLSamplerTranslationProviderLanguageDirection.cs" />

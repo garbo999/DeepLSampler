@@ -1,8 +1,10 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Sdl.LanguagePlatform.Core;
+using Sdl.Core.Globalization;
 using Sdl.LanguagePlatform.TranslationMemory;
 using Sdl.LanguagePlatform.TranslationMemoryApi;
 
@@ -15,11 +17,19 @@ namespace DeepLSampler
         private DeepLSamplerTranslationProvider _provider;
         private LanguagePair _languageDirection;
         private DeepLSamplerTranslationOptions _options;
-        // //////////////////////////////////// private DeepLSamplerTranslationProviderElementVisitor _visitor;
-        private Dictionary<string, string> _listOfTranslations;
+        private DeepLSamplerTranslationProviderElementVisitor _visitor;
+        //private Dictionary<string, string> _listOfTranslations;
+
+        // string borrar = DeepLSamplerProviderConfDialog.deepL.translateText("i think i hit the jackpot today"); // new test
 
         public DeepLSamplerTranslationProviderLanguageDirection(DeepLSamplerTranslationProvider provider, LanguagePair languages)
         {
+            _provider = provider;
+            _languageDirection = languages;
+            _options = _provider.Options;
+            _visitor = new DeepLSamplerTranslationProviderElementVisitor(_options);
+            //_listOfTranslations = new Dictionary<string, string>();
+
         }
 
         public ImportResult[] AddOrUpdateTranslationUnits(TranslationUnit[] translationUnits, int[] previousTranslationHashes, ImportSettings settings)
@@ -49,12 +59,34 @@ namespace DeepLSampler
 
         public bool CanReverseLanguageDirection
         {
-            get { throw new NotImplementedException(); }
+            //get { throw new NotImplementedException(); }
+            get { return false; }
         }
 
         public SearchResults SearchSegment(SearchSettings settings, Segment segment)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
+
+            _visitor.Reset();
+            foreach (var element in segment.Elements)
+            {
+                element.AcceptSegmentElementVisitor(_visitor);
+            }
+
+            SearchResults results = new SearchResults();
+            results.SourceSegment = segment.Duplicate();
+
+            // Look up the currently selected segment in the collection (normal segment lookup).
+            if (settings.Mode == SearchMode.NormalSearch)
+            {
+                Segment translation = new Segment(_languageDirection.TargetCulture);
+                //translation.Add(_listOfTranslations[_visitor.PlainText]);
+                translation.Add(DeepLSamplerProviderConfDialog.deepL.translateText(_visitor.PlainText));
+                results.Add(CreateSearchResult(segment, translation, _visitor.PlainText, segment.HasTags));
+            }
+            
+            // concordance searches WOULD go here (but not supported)
+            return results;
         }
 
         public SearchResults[] SearchSegments(SearchSettings settings, Segment[] segments)

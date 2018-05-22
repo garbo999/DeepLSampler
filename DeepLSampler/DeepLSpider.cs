@@ -8,14 +8,18 @@ using OpenQA.Selenium;
 
 namespace DeepLSampler
 {
-    class DeepLSpider
+    public class DeepLSpider
     {
-        //public string DeepLURL { get; set; }
+        // Currently supported languages are English, German, French, Spanish, Italian, Dutch, and Polish
+        // EN, DE, FR, ES, IT, NL, PL
+
         const string _DeepLURL = "https://www.deepl.com/translator";
         const bool _Delays_enabled = true;
         const int _Delay_1 = 1000;
         const int _Delay_2 = 500;
-        const bool _DEBUG = true;
+        const bool _DEBUG = false;
+        const string _default_source_lang = "DE";
+        const string _default_target_lang = "EN";
 
         public string SrcLang { get; set; }
         public string TgtLang { get; set; }
@@ -25,11 +29,14 @@ namespace DeepLSampler
         public IWebElement SourceMenuDropdown { get; set; }
         public IWebElement TargetMenuDropdown { get; set; }
 
-        public DeepLSpider(string source_lang, string target_lang)
+        public DeepLSpider()
         {
             if (_DEBUG) Console.WriteLine("Creating DeepLSpider instance.");
 
             this.Driver = new FirefoxDriver();
+
+            this.SrcLang = _default_source_lang;
+            this.TgtLang = _default_target_lang;
 
             this.Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
 
@@ -84,6 +91,7 @@ namespace DeepLSampler
             IWebElement target_box = targets[0];
 
             // loop until data arrives
+            // could be a problem with very short data!?
             while (target_box.GetAttribute("value").Length <= 3)
             {
                 System.Threading.Thread.Sleep(_Delay_2);

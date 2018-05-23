@@ -22,6 +22,49 @@ namespace DeepLSampler
 
         // string borrar = DeepLSamplerProviderConfDialog.deepL.translateText("i think i hit the jackpot today"); // new test
 
+        // helper function
+        /// Creates the translation unit as it is later shown in the Translation Results
+        /// window of SDL Trados Studio. This member also determines the match score
+        /// (in our implementation always 100%, as only exact matches are supported)
+        /// as well as the confirmation lelvel, i.e. Translated.
+        private SearchResult CreateSearchResult(Segment searchSegment, Segment translation, string sourceSegment, bool formattingPenalty)
+        {
+            TranslationUnit tu = new TranslationUnit();
+            Segment orgSegment = new Segment();
+            orgSegment.Add(sourceSegment);
+            tu.SourceSegment = orgSegment;
+            tu.TargetSegment = translation;
+
+            tu.ResourceId = new PersistentObjectToken(tu.GetHashCode(), Guid.Empty);
+
+            int score = 100;
+            tu.Origin = TranslationUnitOrigin.TM;
+
+            SearchResult searchResult = new SearchResult(tu);
+            searchResult.ScoringResult = new ScoringResult();
+            searchResult.ScoringResult.BaseScore = score;
+
+            if (formattingPenalty)
+            {
+                #region "Draft"
+                tu.ConfirmationLevel = ConfirmationLevel.Draft;
+                #endregion
+
+                #region "FormattingPenalty"
+                Penalty penalty = new Penalty(PenaltyType.TagMismatch, 1);
+                searchResult.ScoringResult.ApplyPenalty(penalty);
+                #endregion
+            }
+            else
+            {
+                tu.ConfirmationLevel = ConfirmationLevel.Translated;
+            }
+            //#endregion
+
+            return searchResult;
+
+        }
+
         public DeepLSamplerTranslationProviderLanguageDirection(DeepLSamplerTranslationProvider provider, LanguagePair languages)
         {
             _provider = provider;

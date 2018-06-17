@@ -7,6 +7,7 @@ using Sdl.LanguagePlatform.Core;
 using Sdl.Core.Globalization;
 using Sdl.LanguagePlatform.TranslationMemory;
 using Sdl.LanguagePlatform.TranslationMemoryApi;
+using System.Windows.Forms;
 
 namespace DeepLSampler
 {
@@ -67,6 +68,8 @@ namespace DeepLSampler
 
         public DeepLSamplerTranslationProviderLanguageDirection(DeepLSamplerTranslationProvider provider, LanguagePair languages)
         {
+            //MessageBox.Show("DeepLSamplerTranslationProviderLanguageDirection constructor.");
+
             _provider = provider;
             _languageDirection = languages;
             _options = _provider.Options;
@@ -134,47 +137,113 @@ namespace DeepLSampler
 
         public SearchResults[] SearchSegments(SearchSettings settings, Segment[] segments)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
+
+            SearchResults[] results = new SearchResults[segments.Length];
+            for (int p = 0; p < segments.Length; ++p)
+            {
+                results[p] = SearchSegment(settings, segments[p]);
+            }
+            return results;
+
         }
 
         public SearchResults[] SearchSegmentsMasked(SearchSettings settings, Segment[] segments, bool[] mask)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
+            if (segments == null)
+            {
+                throw new ArgumentNullException("segments in SearchSegmentsMasked");
+            }
+            if (mask == null || mask.Length != segments.Length)
+            {
+                throw new ArgumentException("mask in SearchSegmentsMasked");
+            }
+
+            SearchResults[] results = new SearchResults[segments.Length];
+            for (int p = 0; p < segments.Length; ++p)
+            {
+                if (mask[p])
+                {
+                    results[p] = SearchSegment(settings, segments[p]);
+                }
+                else
+                {
+                    results[p] = null;
+                }
+            }
+
+            return results;
+
         }
 
         public SearchResults SearchText(SearchSettings settings, string segment)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
+            Segment s = new Sdl.LanguagePlatform.Core.Segment(_languageDirection.SourceCulture);
+            s.Add(segment);
+            return SearchSegment(settings, s);
+
         }
 
         public SearchResults SearchTranslationUnit(SearchSettings settings, TranslationUnit translationUnit)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
+            return SearchSegment(settings, translationUnit.SourceSegment);
         }
 
         public SearchResults[] SearchTranslationUnits(SearchSettings settings, TranslationUnit[] translationUnits)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
+            SearchResults[] results = new SearchResults[translationUnits.Length];
+            for (int p = 0; p < translationUnits.Length; ++p)
+            {
+                results[p] = SearchSegment(settings, translationUnits[p].SourceSegment);
+            }
+            return results;
+
         }
 
         public SearchResults[] SearchTranslationUnitsMasked(SearchSettings settings, TranslationUnit[] translationUnits, bool[] mask)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
+            List<SearchResults> results = new List<SearchResults>();
+
+            int i = 0;
+            foreach (var tu in translationUnits)
+            {
+                if (mask == null || mask[i])
+                {
+                    var result = SearchTranslationUnit(settings, tu);
+                    results.Add(result);
+                }
+                else
+                {
+                    results.Add(null);
+                }
+                i++;
+            }
+
+            return results.ToArray();
+
         }
 
         public System.Globalization.CultureInfo SourceLanguage
         {
-            get { throw new NotImplementedException(); }
+            //get { throw new NotImplementedException(); }
+            get { return _languageDirection.SourceCulture; }
         }
 
         public System.Globalization.CultureInfo TargetLanguage
         {
-            get { throw new NotImplementedException(); }
+            //get { throw new NotImplementedException(); }
+            get { return _languageDirection.TargetCulture; }
         }
 
         public ITranslationProvider TranslationProvider
         {
-            get { throw new NotImplementedException(); }
+            //get { throw new NotImplementedException(); }
+            get { return _provider; }
         }
 
         public ImportResult UpdateTranslationUnit(TranslationUnit translationUnit)

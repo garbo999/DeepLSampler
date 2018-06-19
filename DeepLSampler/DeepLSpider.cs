@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium;
+using System.Text.RegularExpressions;
 
 namespace DeepLSampler
 {
@@ -20,6 +21,7 @@ namespace DeepLSampler
         const bool _DEBUG = false;
         const string _default_source_lang = "DE";
         const string _default_target_lang = "EN";
+        const int _Max_wait_count = 50;
 
         public string SrcLang { get; set; }
         public string TgtLang { get; set; }
@@ -81,21 +83,30 @@ namespace DeepLSampler
         {
             IList<IWebElement> sources = this.Driver.FindElements(By.ClassName("lmt__source_textarea"));
             IWebElement source_box = sources[0];
+            IList<IWebElement> targets = this.Driver.FindElements(By.ClassName("lmt__target_textarea"));
+            IWebElement target_box = targets[0];
 
             source_box.Clear();
             source_box.SendKeys(source_text);
 
-            System.Threading.Thread.Sleep(_Delay_1);
-
-            IList<IWebElement> targets = this.Driver.FindElements(By.ClassName("lmt__target_textarea"));
-            IWebElement target_box = targets[0];
-
             // loop until data arrives
             // could be a problem with very short data!?
-            while (target_box.GetAttribute("value").Length <= 3)
+            // also need to check translation result for filler patterns 
+            // filler pattern = "A[...][...]" or just "[...]"
+            Match m;
+            string translation_result, partial_result_pattern = @"\[\.\.\.\]";
+            int request_count = 0;
+
+            do
             {
                 System.Threading.Thread.Sleep(_Delay_2);
-            }
+
+                translation_result = target_box.GetAttribute("value");
+                m = Regex.Match(translation_result, partial_result_pattern);
+
+                request_count++;
+
+            } while (request_count < _Max_wait_count && m.Success || translation_result.Length <= 3);
 
             return target_box.GetAttribute("value");
         }

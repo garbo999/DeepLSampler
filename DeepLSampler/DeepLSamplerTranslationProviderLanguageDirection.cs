@@ -76,6 +76,13 @@ namespace DeepLSampler
             _visitor = new DeepLSamplerTranslationProviderElementVisitor(_options);
             //_listOfTranslations = new Dictionary<string, string>();
 
+
+            // TRY / CATCH !!!!
+            if (DeepLSamplerProviderConfDialog.deepL.SrcLang != "EN" || DeepLSamplerProviderConfDialog.deepL.TgtLang != "DE")
+            {
+                DeepLSamplerProviderConfDialog.deepL.setLanguages("EN", "DE");
+            }
+
         }
 
         public ImportResult[] AddOrUpdateTranslationUnits(TranslationUnit[] translationUnits, int[] previousTranslationHashes, ImportSettings settings)

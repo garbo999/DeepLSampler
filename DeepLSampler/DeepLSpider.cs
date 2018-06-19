@@ -106,7 +106,7 @@ namespace DeepLSampler
 
                 request_count++;
 
-            } while (request_count < _Max_wait_count && m.Success || translation_result.Length <= 3);
+            } while (request_count < _Max_wait_count && m.Success || translation_result.Length <= 3); // conditions that require waiting longer for a 'satisfactory' translation
 
             return target_box.GetAttribute("value");
         }

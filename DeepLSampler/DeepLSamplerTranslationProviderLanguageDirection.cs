@@ -76,11 +76,17 @@ namespace DeepLSampler
             _visitor = new DeepLSamplerTranslationProviderElementVisitor(_options);
             //_listOfTranslations = new Dictionary<string, string>();
 
+            // examples
+            //_languageDirection.SourceCultureName = "en-US";
+            //_languageDirection.TargetCultureName = "de-DE";
+            string _source_lang = _languageDirection.SourceCultureName.Substring(0, 2).ToUpper();
+            string _target_lang = _languageDirection.TargetCultureName.Substring(0, 2).ToUpper();
 
             // TRY / CATCH !!!!
-            if (DeepLSamplerProviderConfDialog.deepL.SrcLang != "EN" || DeepLSamplerProviderConfDialog.deepL.TgtLang != "DE")
+            // without the if statement, this was repeated many times!
+            if (DeepLSamplerProviderConfDialog.deepL.SrcLang != _source_lang || DeepLSamplerProviderConfDialog.deepL.TgtLang != _target_lang)
             {
-                DeepLSamplerProviderConfDialog.deepL.setLanguages("EN", "DE");
+                DeepLSamplerProviderConfDialog.deepL.setLanguages(_source_lang, _target_lang);
             }
 
         }

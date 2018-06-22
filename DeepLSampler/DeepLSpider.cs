@@ -14,14 +14,18 @@ namespace DeepLSampler
         // Currently supported languages are English, German, French, Spanish, Italian, Dutch, and Polish
         // EN, DE, FR, ES, IT, NL, PL
 
-        const string _DeepLURL = "https://www.deepl.com/translator";
-        const bool _Delays_enabled = true;
-        const int _Delay_1 = 1000;
-        const int _Delay_2 = 500;
-        const bool _DEBUG = false;
         const string _default_source_lang = "DE";
         const string _default_target_lang = "EN";
-        const int _Max_wait_count = 50;
+        const bool _DEBUG = false;
+
+        // need to delete underscores
+        public static bool _Delays_enabled = true;
+        public static int _Delay_1 = 1000;
+        public static int _Delay_2 = 500;
+        public static int _Max_wait_count = 50;
+        public static int _Min_chars_in_target_translation = 3;
+
+        public static string _DeepLURL = "https://www.deepl.com/translator";
 
         public string SrcLang { get; set; }
         public string TgtLang { get; set; }
@@ -31,9 +35,9 @@ namespace DeepLSampler
         public IWebElement SourceMenuDropdown { get; set; }
         public IWebElement TargetMenuDropdown { get; set; }
 
-        public DeepLSpider()
+        public DeepLSpider() // could be static since this is class variable?
         {
-            if (_DEBUG) Console.WriteLine("Creating DeepLSpider instance.");
+            //if (_DEBUG) Console.WriteLine("Creating DeepLSpider instance.");
 
             this.Driver = new FirefoxDriver();
 
@@ -56,27 +60,22 @@ namespace DeepLSampler
 
         public void setLanguages(string source_lang, string target_lang)
         {
+            // allowed values (strings) =  EN, DE, FR, ES, IT, NL, PL
+
             this.SrcLang = source_lang;
             this.TgtLang = target_lang;
 
             // Open SOURCE language selection dropdown menu and click desired language
-
-            //IList<IWebElement> lang_dropdown_selectors = this.Driver.FindElements(By.ClassName("lmt__language_select__opener"));
-            //if (_Delays_enabled) System.Threading.Thread.Sleep(_Delay_1);
-            //lang_dropdown_selectors[0].Click(); // note element [0] !
-
             this.SourceMenuDropdown.Click();
             IWebElement lang_selector_source = this.Driver.FindElement(By.CssSelector($"div.lmt__language_select--source li[dl-value='{source_lang}']"));
             if (_Delays_enabled) System.Threading.Thread.Sleep(_Delay_2);
             lang_selector_source.Click();
 
             // Open TARGET language selection dropdown menu and click desired language
-            //lang_dropdown_selectors[1].Click(); // [1] !!!
             this.TargetMenuDropdown.Click();
             IWebElement lang_selector_target = this.Driver.FindElement(By.CssSelector($"div.lmt__language_select--target li[dl-value='{target_lang}']"));
             if (_Delays_enabled) System.Threading.Thread.Sleep(_Delay_2);
             lang_selector_target.Click();
-
         }
 
         public string translateText(string source_text)
@@ -106,7 +105,9 @@ namespace DeepLSampler
 
                 request_count++;
 
-            } while (request_count < _Max_wait_count && m.Success || translation_result.Length <= 3); // conditions that require waiting longer for a 'satisfactory' translation
+            } while (request_count < _Max_wait_count && m.Success || translation_result.Length <= _Min_chars_in_target_translation); 
+            // conditions that require waiting longer for a 'satisfactory' translation
+            // maybe problem with conditions?
 
             return target_box.GetAttribute("value");
         }

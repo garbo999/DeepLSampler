@@ -13,14 +13,12 @@ namespace DeepLSampler
     public partial class DeepLSamplerProviderConfDialog : Form
     {
         public static DeepLSpider deepL;
-        //public static DeepLSpider deepL = new DeepLSpider();
 
-        //public DeepLSamplerProviderConfDialog()
         public DeepLSamplerProviderConfDialog(DeepLSamplerTranslationOptions options)
         {
             Options = options;
             InitializeComponent();
-            UpdateDialog();
+            UpdateDialog(); // initialize form here!
 
             // attempt to open connection to DeepL
             try
@@ -38,21 +36,11 @@ namespace DeepLSampler
             string target_lang = "IT";
 
             deepL.setLanguages(source_lang, target_lang);
-            //deepL.setLanguages("FR", "PL");
-            //deepL.setLanguages("IT", "ES");
-            //deepL.setLanguages("EN", "DE");
-
-            //Console.WriteLine("translation is: " + deepL.translateText("i think i hit the jackpot today"));
-            //Console.WriteLine("translation is: " + deepL.translateText("i have to go pick up my kids at school right now"));
-            //Console.WriteLine("translation is: " + deepL.translateText("i just got back from picking up my kids at school and now i have to go to the optometrist"));
 
             textBox1.Text = "i think i hit the jackpot today";
             textBox2.Text = deepL.translateText("i think i hit the jackpot today");
 
-
         }
-
-        //public DeepLSpider DeepL { get; set; }
 
         public DeepLSamplerTranslationOptions Options
         {
@@ -62,8 +50,10 @@ namespace DeepLSampler
 
         private void UpdateDialog()
         {
-            //txt_ListFile.Text = Options.ListFileName;
-            //combo_Delimiter.Text = Options.Delimiter;
+            textBox4.Text = DeepLSpider._Delay_1.ToString();
+            textBox5.Text = DeepLSpider._Delay_2.ToString();
+            textBox6.Text = DeepLSpider._Max_wait_count.ToString();
+            textBox7.Text = DeepLSpider._DeepLURL.ToString();
         }
 
         private void DeepLSamplerProviderConfDialog_Load(object sender, EventArgs e)
@@ -84,6 +74,25 @@ namespace DeepLSampler
         private void button1_Click(object sender, EventArgs e)
         {
             textBox2.Text = deepL.translateText(textBox1.Text);
+        }
+
+        private void btnSaveSettings_Click(object sender, EventArgs e)
+        {
+            int numValue;
+            bool parsed;
+
+            // error checks for 3 integer values
+            parsed = Int32.TryParse(textBox4.Text, out numValue);
+            if (parsed) DeepLSpider._Delay_1 = numValue;
+
+            parsed = Int32.TryParse(textBox5.Text, out numValue);
+            if (parsed) DeepLSpider._Delay_2 = numValue;
+
+            parsed = Int32.TryParse(textBox6.Text, out numValue);
+            if (parsed) DeepLSpider._Max_wait_count = numValue;
+
+            // no error checking for URL!
+            DeepLSpider._DeepLURL = textBox7.Text;
         }
     }
 }

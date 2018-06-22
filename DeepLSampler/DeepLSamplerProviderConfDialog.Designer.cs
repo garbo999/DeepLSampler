@@ -40,16 +40,17 @@
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.btnSaveSettings = new System.Windows.Forms.Button();
+            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.textBox4 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -62,7 +63,7 @@
             this.groupBox1.Controls.Add(this.textBox2);
             this.groupBox1.Controls.Add(this.textBox1);
             this.groupBox1.Controls.Add(this.btn_translate);
-            this.groupBox1.Location = new System.Drawing.Point(30, 231);
+            this.groupBox1.Location = new System.Drawing.Point(30, 333);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(551, 128);
             this.groupBox1.TabIndex = 0;
@@ -114,7 +115,7 @@
             // btn_OK
             // 
             this.btn_OK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btn_OK.Location = new System.Drawing.Point(409, 465);
+            this.btn_OK.Location = new System.Drawing.Point(409, 567);
             this.btn_OK.Name = "btn_OK";
             this.btn_OK.Size = new System.Drawing.Size(75, 23);
             this.btn_OK.TabIndex = 1;
@@ -125,7 +126,7 @@
             // btn_Cancel
             // 
             this.btn_Cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btn_Cancel.Location = new System.Drawing.Point(506, 465);
+            this.btn_Cancel.Location = new System.Drawing.Point(506, 567);
             this.btn_Cancel.Name = "btn_Cancel";
             this.btn_Cancel.Size = new System.Drawing.Size(75, 23);
             this.btn_Cancel.TabIndex = 2;
@@ -137,7 +138,7 @@
             // 
             this.groupBox2.Controls.Add(this.textBox3);
             this.groupBox2.Controls.Add(this.label3);
-            this.groupBox2.Location = new System.Drawing.Point(30, 377);
+            this.groupBox2.Location = new System.Drawing.Point(30, 479);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(551, 65);
             this.groupBox2.TabIndex = 3;
@@ -162,8 +163,9 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.radioButton1);
             this.groupBox3.Controls.Add(this.button2);
-            this.groupBox3.Controls.Add(this.button1);
+            this.groupBox3.Controls.Add(this.btnSaveSettings);
             this.groupBox3.Controls.Add(this.textBox7);
             this.groupBox3.Controls.Add(this.label7);
             this.groupBox3.Controls.Add(this.textBox6);
@@ -174,15 +176,71 @@
             this.groupBox3.Controls.Add(this.label4);
             this.groupBox3.Location = new System.Drawing.Point(30, 26);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(551, 189);
+            this.groupBox3.Size = new System.Drawing.Size(551, 287);
             this.groupBox3.TabIndex = 4;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Spider parameters";
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(166, 194);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(137, 23);
+            this.button2.TabIndex = 9;
+            this.button2.Text = "Restore default values";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // btnSaveSettings
+            // 
+            this.btnSaveSettings.Location = new System.Drawing.Point(9, 194);
+            this.btnSaveSettings.Name = "btnSaveSettings";
+            this.btnSaveSettings.Size = new System.Drawing.Size(127, 23);
+            this.btnSaveSettings.TabIndex = 8;
+            this.btnSaveSettings.Text = "Save current values";
+            this.btnSaveSettings.UseVisualStyleBackColor = true;
+            this.btnSaveSettings.Click += new System.EventHandler(this.btnSaveSettings_Click);
+            // 
+            // textBox7
+            // 
+            this.textBox7.Location = new System.Drawing.Point(106, 153);
+            this.textBox7.Name = "textBox7";
+            this.textBox7.Size = new System.Drawing.Size(428, 20);
+            this.textBox7.TabIndex = 7;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(6, 156);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(67, 13);
+            this.label7.TabIndex = 6;
+            this.label7.Text = "DeepL URL:";
+            // 
+            // textBox6
+            // 
+            this.textBox6.Location = new System.Drawing.Point(106, 123);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(71, 20);
+            this.textBox6.TabIndex = 5;
+            // 
+            // textBox5
+            // 
+            this.textBox5.Location = new System.Drawing.Point(147, 89);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(67, 20);
+            this.textBox5.TabIndex = 4;
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(147, 61);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(67, 20);
+            this.textBox4.TabIndex = 3;
+            // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(6, 87);
+            this.label6.Location = new System.Drawing.Point(6, 126);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(85, 13);
             this.label6.TabIndex = 2;
@@ -191,82 +249,39 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 58);
+            this.label5.Location = new System.Drawing.Point(47, 89);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(46, 13);
+            this.label5.Size = new System.Drawing.Size(68, 13);
             this.label5.TabIndex = 1;
-            this.label5.Text = "Delay 2:";
+            this.label5.Text = "Delay 2 (ms):";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 30);
+            this.label4.Location = new System.Drawing.Point(47, 61);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(46, 13);
+            this.label4.Size = new System.Drawing.Size(68, 13);
             this.label4.TabIndex = 0;
-            this.label4.Text = "Delay 1:";
+            this.label4.Text = "Delay 1 (ms):";
             // 
-            // textBox4
+            // radioButton1
             // 
-            this.textBox4.Location = new System.Drawing.Point(106, 30);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(153, 20);
-            this.textBox4.TabIndex = 3;
-            // 
-            // textBox5
-            // 
-            this.textBox5.Location = new System.Drawing.Point(106, 58);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(153, 20);
-            this.textBox5.TabIndex = 4;
-            // 
-            // textBox6
-            // 
-            this.textBox6.Location = new System.Drawing.Point(106, 84);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(153, 20);
-            this.textBox6.TabIndex = 5;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(6, 117);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(67, 13);
-            this.label7.TabIndex = 6;
-            this.label7.Text = "DeepL URL:";
-            // 
-            // textBox7
-            // 
-            this.textBox7.Location = new System.Drawing.Point(106, 114);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(153, 20);
-            this.textBox7.TabIndex = 7;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(9, 155);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(127, 23);
-            this.button1.TabIndex = 8;
-            this.button1.Text = "Save current values";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(166, 155);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(137, 23);
-            this.button2.TabIndex = 9;
-            this.button2.Text = "Restore default values";
-            this.button2.UseVisualStyleBackColor = true;
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Checked = true;
+            this.radioButton1.Location = new System.Drawing.Point(9, 30);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(98, 17);
+            this.radioButton1.TabIndex = 10;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "Delays enabled";
+            this.radioButton1.UseVisualStyleBackColor = true;
             // 
             // DeepLSamplerProviderConfDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btn_Cancel;
-            this.ClientSize = new System.Drawing.Size(623, 511);
+            this.ClientSize = new System.Drawing.Size(623, 611);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.btn_Cancel);
@@ -307,6 +322,7 @@
         private System.Windows.Forms.TextBox textBox7;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnSaveSettings;
+        private System.Windows.Forms.RadioButton radioButton1;
     }
 }

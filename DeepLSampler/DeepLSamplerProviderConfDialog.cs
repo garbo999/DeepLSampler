@@ -99,13 +99,30 @@ namespace DeepLSampler
             DeepLSpider._DeepLURL = textBox7.Text;
         }
 
-        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            string borrar = "checked";
+            //string borrar = "checked";
+            //if (!checkBox1.Checked) borrar = "NOT checked";
+            //MessageBox.Show(borrar);
 
-            if (!radioButton1.Checked) borrar = "NOT checked";
+            // if now unchecked, disable 
+            if (!checkBox1.Checked)
+            {
+                DeepLSpider._Delays_enabled = false;
+                textBox4.Enabled = false;
+                textBox5.Enabled = false;
 
-            MessageBox.Show(borrar);
+            }
+            else 
+            {
+                DeepLSpider._Delays_enabled = true;
+                textBox4.Enabled = true;
+                textBox5.Enabled = true;
+
+            }
+
+
         }
+
     }
 }

@@ -20,8 +20,8 @@ namespace DeepLSampler
 
         // need to delete underscores
         public static bool _Delays_enabled = true;
-        public static int _Delay_1 = 1000;
-        public static int _Delay_2 = 500;
+        public static int _Delay_1 = 1000; // only used in creation of initial spider window
+        public static int _Delay_2 = 500; // used in setLanguages() and translateText() 
         public static int _Max_wait_count = 50;
         public static int _Min_target_chars = 3;
 
@@ -52,7 +52,6 @@ namespace DeepLSampler
 
             // grab and save SOURCE and TARGET language selection dropdowns
             IList<IWebElement> lang_dropdown_selectors = this.Driver.FindElements(By.ClassName("lmt__language_select__opener"));
-            //if (_Delays_enabled) System.Threading.Thread.Sleep(_Delay_2);
             this.SourceMenuDropdown = lang_dropdown_selectors[0];
             this.TargetMenuDropdown = lang_dropdown_selectors[1];
 
@@ -106,7 +105,7 @@ namespace DeepLSampler
                 request_count++;
 
             } while (request_count < _Max_wait_count && (m.Success || translation_result.Length <= _Min_target_chars)); 
-            // conditions that require waiting longer for a 'satisfactory' translation
+            // do / while to wait for 'satisfactory' translation
             // maybe problem with conditions?
 
             return target_box.GetAttribute("value");

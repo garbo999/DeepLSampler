@@ -23,7 +23,7 @@ namespace DeepLSampler
         public static int _Delay_1 = 1000;
         public static int _Delay_2 = 500;
         public static int _Max_wait_count = 50;
-        public static int _Min_chars_in_target_translation = 3;
+        public static int _Min_target_chars = 3;
 
         public static string _DeepLURL = "https://www.deepl.com/translator";
 
@@ -105,7 +105,7 @@ namespace DeepLSampler
 
                 request_count++;
 
-            } while (request_count < _Max_wait_count && m.Success || translation_result.Length <= _Min_chars_in_target_translation); 
+            } while (request_count < _Max_wait_count && (m.Success || translation_result.Length <= _Min_target_chars)); 
             // conditions that require waiting longer for a 'satisfactory' translation
             // maybe problem with conditions?
 

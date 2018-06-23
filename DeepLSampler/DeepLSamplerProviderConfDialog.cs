@@ -54,6 +54,7 @@ namespace DeepLSampler
             textBox5.Text = DeepLSpider._Delay_2.ToString();
             textBox6.Text = DeepLSpider._Max_wait_count.ToString();
             textBox7.Text = DeepLSpider._DeepLURL.ToString();
+            textBox8.Text = DeepLSpider._Min_target_chars.ToString();
         }
 
         private void DeepLSamplerProviderConfDialog_Load(object sender, EventArgs e)
@@ -91,8 +92,20 @@ namespace DeepLSampler
             parsed = Int32.TryParse(textBox6.Text, out numValue);
             if (parsed) DeepLSpider._Max_wait_count = numValue;
 
+            parsed = Int32.TryParse(textBox8.Text, out numValue);
+            if (parsed) DeepLSpider._Min_target_chars = numValue;
+
             // no error checking for URL!
             DeepLSpider._DeepLURL = textBox7.Text;
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            string borrar = "checked";
+
+            if (!radioButton1.Checked) borrar = "NOT checked";
+
+            MessageBox.Show(borrar);
         }
     }
 }

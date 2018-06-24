@@ -72,7 +72,7 @@ namespace DeepLSampler
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btn_translate_Click(object sender, EventArgs e)
         {
             textBox2.Text = deepL.translateText(textBox1.Text);
         }
@@ -105,7 +105,7 @@ namespace DeepLSampler
             //if (!checkBox1.Checked) borrar = "NOT checked";
             //MessageBox.Show(borrar);
 
-            // if now unchecked, disable 
+            // if not already checked, disable 
             if (!checkBox1.Checked)
             {
                 DeepLSpider._Delays_enabled = false;
@@ -120,9 +120,20 @@ namespace DeepLSampler
                 textBox5.Enabled = true;
 
             }
-
-
         }
 
+        private void btnShowAdvanced_Click(object sender, EventArgs e)
+        {
+            if (grpSpiderParams.Visible)
+            {
+                grpSpiderParams.Visible = false;
+                btnShowAdvanced.Text = "Show advanced parameters";
+            }
+            else
+            {
+                grpSpiderParams.Visible = true;
+                btnShowAdvanced.Text = "Hide advanced parameters";
+            }
+        }
     }
 }

@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.grpDeepLconn = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -36,11 +36,14 @@
             this.btn_translate = new System.Windows.Forms.Button();
             this.btn_OK = new System.Windows.Forms.Button();
             this.btn_Cancel = new System.Windows.Forms.Button();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.grpConnError = new System.Windows.Forms.GroupBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.button2 = new System.Windows.Forms.Button();
+            this.grpSpiderParams = new System.Windows.Forms.GroupBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.btnRestoreDefaults = new System.Windows.Forms.Button();
             this.btnSaveSettings = new System.Windows.Forms.Button();
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -50,27 +53,25 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
+            this.btnShowAdvanced = new System.Windows.Forms.Button();
+            this.grpDeepLconn.SuspendLayout();
+            this.grpConnError.SuspendLayout();
+            this.grpSpiderParams.SuspendLayout();
             this.SuspendLayout();
             // 
-            // groupBox1
+            // grpDeepLconn
             // 
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.textBox2);
-            this.groupBox1.Controls.Add(this.textBox1);
-            this.groupBox1.Controls.Add(this.btn_translate);
-            this.groupBox1.Location = new System.Drawing.Point(30, 333);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(551, 128);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Test DeepL connection";
+            this.grpDeepLconn.Controls.Add(this.label2);
+            this.grpDeepLconn.Controls.Add(this.label1);
+            this.grpDeepLconn.Controls.Add(this.textBox2);
+            this.grpDeepLconn.Controls.Add(this.textBox1);
+            this.grpDeepLconn.Controls.Add(this.btn_translate);
+            this.grpDeepLconn.Location = new System.Drawing.Point(30, 12);
+            this.grpDeepLconn.Name = "grpDeepLconn";
+            this.grpDeepLconn.Size = new System.Drawing.Size(551, 128);
+            this.grpDeepLconn.TabIndex = 0;
+            this.grpDeepLconn.TabStop = false;
+            this.grpDeepLconn.Text = "Test DeepL connection";
             // 
             // label2
             // 
@@ -112,7 +113,7 @@
             this.btn_translate.TabIndex = 0;
             this.btn_translate.Text = "Translate source (DE-EN)";
             this.btn_translate.UseVisualStyleBackColor = true;
-            this.btn_translate.Click += new System.EventHandler(this.button1_Click);
+            this.btn_translate.Click += new System.EventHandler(this.btn_translate_Click);
             // 
             // btn_OK
             // 
@@ -136,16 +137,16 @@
             this.btn_Cancel.UseVisualStyleBackColor = true;
             this.btn_Cancel.Click += new System.EventHandler(this.btn_Cancel_Click);
             // 
-            // groupBox2
+            // grpConnError
             // 
-            this.groupBox2.Controls.Add(this.textBox3);
-            this.groupBox2.Controls.Add(this.label3);
-            this.groupBox2.Location = new System.Drawing.Point(30, 479);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(551, 65);
-            this.groupBox2.TabIndex = 3;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Connection error status";
+            this.grpConnError.Controls.Add(this.textBox3);
+            this.grpConnError.Controls.Add(this.label3);
+            this.grpConnError.Location = new System.Drawing.Point(30, 156);
+            this.grpConnError.Name = "grpConnError";
+            this.grpConnError.Size = new System.Drawing.Size(551, 65);
+            this.grpConnError.TabIndex = 3;
+            this.grpConnError.TabStop = false;
+            this.grpConnError.Text = "Connection error status";
             // 
             // textBox3
             // 
@@ -163,36 +164,66 @@
             this.label3.TabIndex = 0;
             this.label3.Text = "Current error:";
             // 
-            // groupBox3
+            // grpSpiderParams
             // 
-            this.groupBox3.Controls.Add(this.checkBox1);
-            this.groupBox3.Controls.Add(this.textBox8);
-            this.groupBox3.Controls.Add(this.label8);
-            this.groupBox3.Controls.Add(this.button2);
-            this.groupBox3.Controls.Add(this.btnSaveSettings);
-            this.groupBox3.Controls.Add(this.textBox7);
-            this.groupBox3.Controls.Add(this.label7);
-            this.groupBox3.Controls.Add(this.textBox6);
-            this.groupBox3.Controls.Add(this.textBox5);
-            this.groupBox3.Controls.Add(this.textBox4);
-            this.groupBox3.Controls.Add(this.label6);
-            this.groupBox3.Controls.Add(this.label5);
-            this.groupBox3.Controls.Add(this.label4);
-            this.groupBox3.Location = new System.Drawing.Point(30, 26);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(551, 287);
-            this.groupBox3.TabIndex = 4;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Spider parameters";
+            this.grpSpiderParams.Controls.Add(this.checkBox1);
+            this.grpSpiderParams.Controls.Add(this.textBox8);
+            this.grpSpiderParams.Controls.Add(this.label8);
+            this.grpSpiderParams.Controls.Add(this.btnRestoreDefaults);
+            this.grpSpiderParams.Controls.Add(this.btnSaveSettings);
+            this.grpSpiderParams.Controls.Add(this.textBox7);
+            this.grpSpiderParams.Controls.Add(this.label7);
+            this.grpSpiderParams.Controls.Add(this.textBox6);
+            this.grpSpiderParams.Controls.Add(this.textBox5);
+            this.grpSpiderParams.Controls.Add(this.textBox4);
+            this.grpSpiderParams.Controls.Add(this.label6);
+            this.grpSpiderParams.Controls.Add(this.label5);
+            this.grpSpiderParams.Controls.Add(this.label4);
+            this.grpSpiderParams.Location = new System.Drawing.Point(30, 270);
+            this.grpSpiderParams.Name = "grpSpiderParams";
+            this.grpSpiderParams.Size = new System.Drawing.Size(551, 262);
+            this.grpSpiderParams.TabIndex = 4;
+            this.grpSpiderParams.TabStop = false;
+            this.grpSpiderParams.Text = "Spider parameters";
+            this.grpSpiderParams.Visible = false;
             // 
-            // button2
+            // checkBox1
             // 
-            this.button2.Location = new System.Drawing.Point(166, 226);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(137, 23);
-            this.button2.TabIndex = 9;
-            this.button2.Text = "Restore default values";
-            this.button2.UseVisualStyleBackColor = true;
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Checked = true;
+            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox1.Location = new System.Drawing.Point(13, 85);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(99, 17);
+            this.checkBox1.TabIndex = 13;
+            this.checkBox1.Text = "Delays enabled";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
+            // textBox8
+            // 
+            this.textBox8.Location = new System.Drawing.Point(126, 56);
+            this.textBox8.Name = "textBox8";
+            this.textBox8.Size = new System.Drawing.Size(71, 20);
+            this.textBox8.TabIndex = 12;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(10, 56);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(113, 13);
+            this.label8.TabIndex = 11;
+            this.label8.Text = "Min. target characters:";
+            // 
+            // btnRestoreDefaults
+            // 
+            this.btnRestoreDefaults.Location = new System.Drawing.Point(166, 226);
+            this.btnRestoreDefaults.Name = "btnRestoreDefaults";
+            this.btnRestoreDefaults.Size = new System.Drawing.Size(137, 23);
+            this.btnRestoreDefaults.TabIndex = 9;
+            this.btnRestoreDefaults.Text = "Restore default values";
+            this.btnRestoreDefaults.UseVisualStyleBackColor = true;
             // 
             // btnSaveSettings
             // 
@@ -231,14 +262,14 @@
             // 
             this.textBox5.Location = new System.Drawing.Point(126, 143);
             this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(67, 20);
+            this.textBox5.Size = new System.Drawing.Size(71, 20);
             this.textBox5.TabIndex = 4;
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(126, 115);
+            this.textBox4.Location = new System.Drawing.Point(126, 114);
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(67, 20);
+            this.textBox4.Size = new System.Drawing.Size(71, 20);
             this.textBox4.TabIndex = 3;
             // 
             // label6
@@ -268,34 +299,15 @@
             this.label4.TabIndex = 0;
             this.label4.Text = "Delay 1 (ms):";
             // 
-            // label8
+            // btnShowAdvanced
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(10, 56);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(113, 13);
-            this.label8.TabIndex = 11;
-            this.label8.Text = "Min. target characters:";
-            // 
-            // textBox8
-            // 
-            this.textBox8.Location = new System.Drawing.Point(126, 56);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(71, 20);
-            this.textBox8.TabIndex = 12;
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Checked = true;
-            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox1.Location = new System.Drawing.Point(13, 85);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(99, 17);
-            this.checkBox1.TabIndex = 13;
-            this.checkBox1.Text = "Delays enabled";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            this.btnShowAdvanced.Location = new System.Drawing.Point(39, 233);
+            this.btnShowAdvanced.Name = "btnShowAdvanced";
+            this.btnShowAdvanced.Size = new System.Drawing.Size(168, 23);
+            this.btnShowAdvanced.TabIndex = 5;
+            this.btnShowAdvanced.Text = "Show advanced parameters";
+            this.btnShowAdvanced.UseVisualStyleBackColor = true;
+            this.btnShowAdvanced.Click += new System.EventHandler(this.btnShowAdvanced_Click);
             // 
             // DeepLSamplerProviderConfDialog
             // 
@@ -303,26 +315,27 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btn_Cancel;
             this.ClientSize = new System.Drawing.Size(623, 611);
-            this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.btnShowAdvanced);
+            this.Controls.Add(this.grpSpiderParams);
+            this.Controls.Add(this.grpConnError);
             this.Controls.Add(this.btn_Cancel);
             this.Controls.Add(this.btn_OK);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.grpDeepLconn);
             this.Name = "DeepLSamplerProviderConfDialog";
             this.Text = "DeepL Sampler Provider Options";
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
+            this.grpDeepLconn.ResumeLayout(false);
+            this.grpDeepLconn.PerformLayout();
+            this.grpConnError.ResumeLayout(false);
+            this.grpConnError.PerformLayout();
+            this.grpSpiderParams.ResumeLayout(false);
+            this.grpSpiderParams.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox grpDeepLconn;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox2;
@@ -330,10 +343,10 @@
         private System.Windows.Forms.Button btn_translate;
         private System.Windows.Forms.Button btn_OK;
         private System.Windows.Forms.Button btn_Cancel;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox grpConnError;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.GroupBox grpSpiderParams;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
@@ -342,10 +355,11 @@
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.TextBox textBox7;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnRestoreDefaults;
         private System.Windows.Forms.Button btnSaveSettings;
         private System.Windows.Forms.TextBox textBox8;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Button btnShowAdvanced;
     }
 }

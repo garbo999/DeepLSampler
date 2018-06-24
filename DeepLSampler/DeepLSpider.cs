@@ -87,10 +87,10 @@ namespace DeepLSampler
             source_box.Clear();
             source_box.SendKeys(source_text);
 
-            // loop until data arrives
-            // could be a problem with very short data!?
-            // also need to check translation result for filler patterns 
-            // filler pattern = "A[...][...]" or just "[...]"
+            // LOOP until data arrives
+            // - could be a problem with very short data!?
+            // - also need to check translation result for filler patterns that sometimes appear before translation is complete
+            //      e.g. filler pattern = "A[...][...]" or just "[...]"
             Match m;
             string translation_result, partial_result_pattern = @"\[\.\.\.\]";
             int request_count = 0;

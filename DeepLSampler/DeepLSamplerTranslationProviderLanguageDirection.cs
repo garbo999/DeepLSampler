@@ -38,7 +38,8 @@ namespace DeepLSampler
 
             tu.ResourceId = new PersistentObjectToken(tu.GetHashCode(), Guid.Empty);
 
-            int score = 100;
+            //int score = 100;
+            int score = 85; // my standard score for DeepL
             tu.Origin = TranslationUnitOrigin.TM;
 
             SearchResult searchResult = new SearchResult(tu);

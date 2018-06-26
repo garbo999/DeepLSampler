@@ -12,7 +12,7 @@ namespace DeepLSampler
 {
     public partial class DeepLSamplerProviderConfDialog : Form
     {
-        public static DeepLSpider deepL;
+        public static DeepLSpider deepL = null;
 
         public DeepLSamplerProviderConfDialog(DeepLSamplerTranslationOptions options)
         {
@@ -20,16 +20,19 @@ namespace DeepLSampler
             InitializeComponent();
             UpdateDialog(); // initialize form here!
 
-            // attempt to open connection to DeepL
-            try
-            {
-                deepL = new DeepLSpider();
-            }
-            catch (Exception e)
-            {
-                //throw;
-                textBox3.Text = e.Message;
-                return;
+            // attempt to open connection to DeepL if not yet established
+            if (deepL == null) { 
+                try
+                {
+                    deepL = new DeepLSpider();
+                }
+                catch (Exception e)
+                {
+                    //throw;
+                    textBox3.Text = e.Message;
+                    deepL = null;
+                    return;
+                }
             }
 
             string source_lang = "EN";

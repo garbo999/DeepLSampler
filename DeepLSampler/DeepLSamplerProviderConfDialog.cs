@@ -12,7 +12,7 @@ namespace DeepLSampler
 {
     public partial class DeepLSamplerProviderConfDialog : Form
     {
-        public static DeepLSpider deepL = null;
+        //public static DeepLSpider deepL = null;
 
         public DeepLSamplerProviderConfDialog(DeepLSamplerTranslationOptions options)
         {
@@ -20,28 +20,32 @@ namespace DeepLSampler
             InitializeComponent();
             UpdateDialog(); // initialize form here!
 
-            // attempt to open connection to DeepL if not yet established
-            if (deepL == null) { 
-                try
-                {
-                    deepL = new DeepLSpider();
-                }
-                catch (Exception e)
-                {
-                    //throw;
-                    textBox3.Text = e.Message;
-                    deepL = null;
-                    return;
-                }
-            }
+            // attempt to open connection to DeepL if not yet established --> connection should already be opened in DeepLSamplerTranslationProvider
+            // should create function in DeepLSamplerTranslationProvider to keep it DRY???
+            DeepLSamplerTranslationProvider.OpenConnection();
+
+            //if (DeepLSamplerTranslationProvider.deepL == null)
+            //{
+            //    try
+            //    {
+            //        DeepLSamplerTranslationProvider.deepL = new DeepLSpider();
+            //    }
+            //    catch (Exception e)
+            //    {
+            //        //throw;
+            //        textBox3.Text = e.Message;
+            //        DeepLSamplerTranslationProvider.deepL = null;
+            //        return;
+            //    }
+            //}
 
             string source_lang = "EN";
             string target_lang = "IT";
 
-            deepL.setLanguages(source_lang, target_lang);
+            DeepLSamplerTranslationProvider.deepL.setLanguages(source_lang, target_lang);
 
             textBox1.Text = "i think i hit the jackpot today";
-            textBox2.Text = deepL.translateText("i think i hit the jackpot today");
+            textBox2.Text = DeepLSamplerTranslationProvider.deepL.translateText("i think i hit the jackpot today");
 
         }
 
@@ -53,6 +57,7 @@ namespace DeepLSampler
 
         private void UpdateDialog()
         {
+            textBox3.Text = DeepLSamplerTranslationProvider.connectionError;
             textBox4.Text = DeepLSpider._Delay_1.ToString();
             textBox5.Text = DeepLSpider._Delay_2.ToString();
             textBox6.Text = DeepLSpider._Max_wait_count.ToString();
@@ -77,7 +82,7 @@ namespace DeepLSampler
 
         private void btn_translate_Click(object sender, EventArgs e)
         {
-            textBox2.Text = deepL.translateText(textBox1.Text);
+            textBox2.Text = DeepLSamplerTranslationProvider.deepL.translateText(textBox1.Text);
         }
 
         private void btnSaveSettings_Click(object sender, EventArgs e)

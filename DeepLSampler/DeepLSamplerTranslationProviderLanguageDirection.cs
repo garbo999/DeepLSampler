@@ -85,9 +85,9 @@ namespace DeepLSampler
 
             // TRY / CATCH !!!!
             // without the if statement, this was repeated many times!
-            if (DeepLSamplerProviderConfDialog.deepL.SrcLang != _source_lang || DeepLSamplerProviderConfDialog.deepL.TgtLang != _target_lang)
+            if (DeepLSamplerTranslationProvider.deepL.SrcLang != _source_lang || DeepLSamplerTranslationProvider.deepL.TgtLang != _target_lang)
             {
-                DeepLSamplerProviderConfDialog.deepL.setLanguages(_source_lang, _target_lang);
+                DeepLSamplerTranslationProvider.deepL.setLanguages(_source_lang, _target_lang);
             }
 
         }
@@ -141,7 +141,7 @@ namespace DeepLSampler
             {
                 Segment translation = new Segment(_languageDirection.TargetCulture);
                 //translation.Add(_listOfTranslations[_visitor.PlainText]);
-                translation.Add(DeepLSamplerProviderConfDialog.deepL.translateText(_visitor.PlainText));
+                translation.Add(DeepLSamplerTranslationProvider.deepL.translateText(_visitor.PlainText));
                 results.Add(CreateSearchResult(segment, translation, _visitor.PlainText, segment.HasTags));
             }
             

@@ -16,6 +16,10 @@ namespace DeepLSampler
         /// This is the string that precedes the plug-in URI.
         public static readonly string DeepLSamplerTranslationProviderScheme = "deeplsamplerprovider";
 
+        // my attempt to get the spider in a better location
+        public static DeepLSpider deepL = null;
+        public static string connectionError = "";
+
         public DeepLSamplerTranslationOptions Options
         {
             get;
@@ -25,9 +29,44 @@ namespace DeepLSampler
         public DeepLSamplerTranslationProvider(DeepLSamplerTranslationOptions options)
         {
             Options = options;
+
+            OpenConnection();
+
+            // attempt to open connection to DeepL if not yet established
+            //if (deepL == null)
+            //{
+            //    try
+            //    {
+            //        deepL = new DeepLSpider();
+            //    }
+            //    catch (Exception e)
+            //    {
+            //        // textBox3.Text = e.Message;
+            //        deepL = null;
+            //        return;
+            //    }
+            //}
+
         }
 
+        public static void OpenConnection()
+        {
+            if (deepL == null)
+            {
+                try
+                {
+                    deepL = new DeepLSpider();
+                }
+                catch (Exception e)
+                {
+                    // textBox3.Text = e.Message;
+                    connectionError = e.Message;
+                    deepL = null;
+                    return;
+                }
+            }
 
+        }
 
 
         #region ITranslationProvider Members

@@ -10,13 +10,11 @@ namespace DeepLSampler
 {
     public class DeepLSamplerTranslationProvider : ITranslationProvider
     {
-
-
         /// This string needs to be a unique value.
         /// This is the string that precedes the plug-in URI.
         public static readonly string DeepLSamplerTranslationProviderScheme = "deeplsamplerprovider";
 
-        // my attempt to get the spider in a better location
+        // spider variables
         public static DeepLSpider deepL = null;
         public static string connectionError = "";
 
@@ -31,22 +29,6 @@ namespace DeepLSampler
             Options = options;
 
             OpenConnection();
-
-            // attempt to open connection to DeepL if not yet established
-            //if (deepL == null)
-            //{
-            //    try
-            //    {
-            //        deepL = new DeepLSpider();
-            //    }
-            //    catch (Exception e)
-            //    {
-            //        // textBox3.Text = e.Message;
-            //        deepL = null;
-            //        return;
-            //    }
-            //}
-
         }
 
         public static void OpenConnection()
@@ -60,12 +42,12 @@ namespace DeepLSampler
                 catch (Exception e)
                 {
                     // textBox3.Text = e.Message;
+                    // log error!
                     connectionError = e.Message;
                     deepL = null;
                     return;
                 }
             }
-
         }
 
 

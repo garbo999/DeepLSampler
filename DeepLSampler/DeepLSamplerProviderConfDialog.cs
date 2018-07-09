@@ -21,24 +21,9 @@ namespace DeepLSampler
             UpdateDialog(); // initialize form here!
 
             // attempt to open connection to DeepL if not yet established --> connection should already be opened in DeepLSamplerTranslationProvider
-            // should create function in DeepLSamplerTranslationProvider to keep it DRY???
             DeepLSamplerTranslationProvider.OpenConnection();
 
-            //if (DeepLSamplerTranslationProvider.deepL == null)
-            //{
-            //    try
-            //    {
-            //        DeepLSamplerTranslationProvider.deepL = new DeepLSpider();
-            //    }
-            //    catch (Exception e)
-            //    {
-            //        //throw;
-            //        textBox3.Text = e.Message;
-            //        DeepLSamplerTranslationProvider.deepL = null;
-            //        return;
-            //    }
-            //}
-
+            // this code could go into UpdateDialog() or be deleted?
             string source_lang = "EN";
             string target_lang = "IT";
 

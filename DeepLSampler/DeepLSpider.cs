@@ -35,7 +35,7 @@ namespace DeepLSampler
         public IWebElement SourceMenuDropdown { get; set; }
         public IWebElement TargetMenuDropdown { get; set; }
 
-        public DeepLSpider() // could be static since this is class variable?
+        public DeepLSpider() // could be static since this is class variable? --> probably no since it is instantiated?
         {
             //if (_DEBUG) Console.WriteLine("Creating DeepLSpider instance.");
 

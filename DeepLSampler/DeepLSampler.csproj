@@ -82,6 +82,7 @@
     <Compile Include="DeepLSamplerTranslationProviderLanguageDirection.cs" />
     <Compile Include="DeepLSamplerTranslationProvider.cs" />
     <Compile Include="DeepLSamplerTranslationProviderFactory.cs" />
+    <Compile Include="Logger.cs" />
     <Compile Include="PluginResources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

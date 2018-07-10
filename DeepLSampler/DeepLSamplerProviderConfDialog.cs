@@ -44,7 +44,7 @@ namespace DeepLSampler
         private void UpdateDialog()
         {
             //textBox3.Text = DeepLSamplerTranslationProvider.connectionError;
-            textBox3.Text = Path.GetTempPath();
+            //textBox3.Text = Path.GetTempPath();
             textBox4.Text = DeepLSpider._Delay_1.ToString();
             textBox5.Text = DeepLSpider._Delay_2.ToString();
             textBox6.Text = DeepLSpider._Max_wait_count.ToString();

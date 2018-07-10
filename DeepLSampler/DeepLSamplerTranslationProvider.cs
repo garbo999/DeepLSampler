@@ -40,6 +40,7 @@ namespace DeepLSampler
             // log gets saved in "C:\Users\garchik2\AppData\Local\Temp" by default
             log = new Logger(Path.GetTempPath() + log_filename);
             log.WriteFileHeader();
+            log.Close();
 
         }
 

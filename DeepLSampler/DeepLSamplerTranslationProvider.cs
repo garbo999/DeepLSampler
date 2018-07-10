@@ -5,6 +5,7 @@ using System.Text;
 using Sdl.LanguagePlatform.Core;
 using Sdl.LanguagePlatform.TranslationMemory;
 using Sdl.LanguagePlatform.TranslationMemoryApi;
+using System.IO;
 
 namespace DeepLSampler
 {
@@ -34,7 +35,10 @@ namespace DeepLSampler
 
             OpenConnection();
 
-            log = new Logger(log_filename);
+            //DeepLSamplerProviderConfDialog.textBox3.Text = Path.GetTempPath();
+
+            // log gets saved in "C:\Users\garchik2\AppData\Local\Temp" by default
+            log = new Logger(Path.GetTempPath() + log_filename);
             log.WriteFileHeader();
 
         }

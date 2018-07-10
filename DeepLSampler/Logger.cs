@@ -35,6 +35,8 @@ namespace DeepLSampler
             {
                 fileStream.WriteLine("   " + s);
             }
+
+            fileStream.Flush();
         }
 
         public void WriteFileHeader()
@@ -49,6 +51,8 @@ namespace DeepLSampler
             fileStream.WriteLine("   : Windows version: " + System.Environment.OSVersion);
             fileStream.WriteLine("   : .Net version: " + dotNetVersion);
             fileStream.WriteLine("");
+
+            fileStream.Flush();
         }
 
         public void Close()

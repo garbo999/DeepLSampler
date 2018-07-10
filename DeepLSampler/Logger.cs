@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DeepLSampler
 {
-    class Logger
+    public class Logger
     {
         private string filename;
         private StreamWriter fileStream;

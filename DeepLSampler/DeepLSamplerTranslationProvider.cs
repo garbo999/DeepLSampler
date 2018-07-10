@@ -18,6 +18,10 @@ namespace DeepLSampler
         public static DeepLSpider deepL = null;
         public static string connectionError = "";
 
+        // logger variable
+        public static Logger log;
+        public static string log_filename = "DLS_log_file.txt";
+
         public DeepLSamplerTranslationOptions Options
         {
             get;
@@ -29,6 +33,10 @@ namespace DeepLSampler
             Options = options;
 
             OpenConnection();
+
+            log = new Logger(log_filename);
+            log.WriteFileHeader();
+
         }
 
         public static void OpenConnection()

@@ -10,23 +10,19 @@ namespace DeepLSampler
 {
     public class Logger
     {
+        //public bool session_open = false;
         private string filename;
         private StreamWriter fileStream;
 
         public Logger(string fn)
         {
-            Console.WriteLine("filename:" + filename);
-
             filename = fn;
-
-            //using (var fileStream = File.Open(filename, FileMode.OpenOrCreate, FileAccess.ReadWrite));
-            //var fileStream = File.Open(filename, FileMode.OpenOrCreate, FileAccess.ReadWrite);
-
-            fileStream = File.AppendText(filename);
         }
 
         public void WriteLine(string s, Boolean with_timestamp)
         {
+            fileStream = File.AppendText(filename);
+
             if (with_timestamp)
             {
                 fileStream.WriteLine("   " + DateTime.Now + ": " + s);
@@ -36,11 +32,13 @@ namespace DeepLSampler
                 fileStream.WriteLine("   " + s);
             }
 
-            fileStream.Flush();
+            fileStream.Close();
         }
 
         public void WriteFileHeader()
         {
+            fileStream = File.AppendText(filename);
+
             string dotNetVersion = Get45or451FromRegistry();
 
             fileStream.WriteLine("************************************");
@@ -52,7 +50,7 @@ namespace DeepLSampler
             fileStream.WriteLine("   : .Net version: " + dotNetVersion);
             fileStream.WriteLine("");
 
-            fileStream.Flush();
+            fileStream.Close();
         }
 
         public void Close()

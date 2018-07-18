@@ -20,7 +20,7 @@ namespace DeepLSampler
         public static string connectionError = "";
 
         // logger variable
-        public static Logger log;
+        public static Logger log = null;
         public static string log_filename = "DLS_log_file.txt";
 
         public DeepLSamplerTranslationOptions Options
@@ -37,10 +37,13 @@ namespace DeepLSampler
 
             //DeepLSamplerProviderConfDialog.textBox3.Text = Path.GetTempPath();
 
-            // log gets saved in "C:\Users\garchik2\AppData\Local\Temp" by default
-            log = new Logger(Path.GetTempPath() + log_filename);
-            log.WriteFileHeader();
-            log.Close();
+            if (log == null) { 
+                // log gets saved in "C:\Users\garchik2\AppData\Local\Temp" by default
+                log = new Logger(Path.GetTempPath() + log_filename);
+                log.WriteFileHeader();
+                log.WriteLine("DeepLSamplerTranslationProvider instantiated", true);
+                //log.Close();
+            }
 
         }
 

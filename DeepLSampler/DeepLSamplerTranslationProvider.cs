@@ -63,6 +63,8 @@ namespace DeepLSampler
                     deepL = null;
                     return;
                 }
+
+                //DeepLSamplerTranslationProvider.log.WriteLine("Opened connection to DeepL from DeepLSamplerTranslationProvider", true);
             }
         }
 

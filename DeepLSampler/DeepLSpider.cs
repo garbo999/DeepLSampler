@@ -79,6 +79,8 @@ namespace DeepLSampler
 
         public string translateText(string source_text)
         {
+            DeepLSamplerTranslationProvider.log.WriteLine("DeepLSpider.translateText executed for source: " + source_text, true);
+
             IList<IWebElement> sources = this.Driver.FindElements(By.ClassName("lmt__source_textarea"));
             IWebElement source_box = sources[0];
             IList<IWebElement> targets = this.Driver.FindElements(By.ClassName("lmt__target_textarea"));
@@ -104,11 +106,13 @@ namespace DeepLSampler
 
                 request_count++;
 
-            } while (request_count < _Max_wait_count && (m.Success || translation_result.Length <= _Min_target_chars)); 
+            } while (request_count < _Max_wait_count && (m.Success || translation_result.Length <= _Min_target_chars));
             // do / while to wait for 'satisfactory' translation
             // maybe problem with conditions?
 
-            return target_box.GetAttribute("value");
+            DeepLSamplerTranslationProvider.log.WriteLine("DeepLSpider.translateText got translation: " + translation_result, true);
+
+            return target_box.GetAttribute("value"); // should be translation_result???
         }
 
     }

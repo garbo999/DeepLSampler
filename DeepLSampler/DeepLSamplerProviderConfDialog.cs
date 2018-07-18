@@ -24,6 +24,11 @@ namespace DeepLSampler
             // attempt to open connection to DeepL if not yet established --> connection should already be opened in DeepLSamplerTranslationProvider
             DeepLSamplerTranslationProvider.OpenConnection();
 
+            if (DeepLSamplerTranslationProvider.log != null)
+            {
+                DeepLSamplerTranslationProvider.log.WriteLine("DeepLSamplerProviderConfDialog instantiated", true);
+            }
+
             // this code could go into UpdateDialog() or be deleted?
             string source_lang = "EN";
             string target_lang = "IT";

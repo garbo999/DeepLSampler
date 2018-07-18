@@ -69,7 +69,8 @@ namespace DeepLSampler
 
         public DeepLSamplerTranslationProviderLanguageDirection(DeepLSamplerTranslationProvider provider, LanguagePair languages)
         {
-            //MessageBox.Show("DeepLSamplerTranslationProviderLanguageDirection constructor.");
+            // this gets instantiated hundreds of times
+            // DeepLSamplerTranslationProvider.log.WriteLine("DeepLSamplerTranslationProviderLanguageDirection instantiated", true);
 
             _provider = provider;
             _languageDirection = languages;
@@ -125,13 +126,15 @@ namespace DeepLSampler
 
         public SearchResults SearchSegment(SearchSettings settings, Segment segment)
         {
-            //throw new NotImplementedException();
+            string dl_trans;
 
             _visitor.Reset();
             foreach (var element in segment.Elements)
             {
                 element.AcceptSegmentElementVisitor(_visitor);
             }
+
+            DeepLSamplerTranslationProvider.log.WriteLine("SearchSegment executed for source: " + _visitor.PlainText, true);
 
             SearchResults results = new SearchResults();
             results.SourceSegment = segment.Duplicate();
@@ -140,11 +143,13 @@ namespace DeepLSampler
             if (settings.Mode == SearchMode.NormalSearch)
             {
                 Segment translation = new Segment(_languageDirection.TargetCulture);
-                //translation.Add(_listOfTranslations[_visitor.PlainText]);
-                translation.Add(DeepLSamplerTranslationProvider.deepL.translateText(_visitor.PlainText));
+                dl_trans = DeepLSamplerTranslationProvider.deepL.translateText(_visitor.PlainText);
+                translation.Add(dl_trans);
                 results.Add(CreateSearchResult(segment, translation, _visitor.PlainText, segment.HasTags));
+                DeepLSamplerTranslationProvider.log.WriteLine("--> translation: " + dl_trans, true);
+
             }
-            
+
             // concordance searches WOULD go here (but not supported)
             return results;
         }

@@ -22,6 +22,7 @@ namespace DeepLSampler
         public static bool _Delays_enabled = true;
         public static int _Delay_1 = 1000; // only used in creation of initial spider window
         public static int _Delay_2 = 500; // used in setLanguages() and translateText() 
+        public static int _Delay_3 = 100; // used in ...LanguageDirection
         public static int _Max_wait_count = 50;
         public static int _Min_target_chars = 3;
 

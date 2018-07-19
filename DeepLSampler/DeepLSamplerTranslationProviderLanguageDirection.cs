@@ -132,7 +132,7 @@ namespace DeepLSampler
             // wait loop to avoid concurrent calls overlapping
             while (search_segment_locked)
             {
-                System.Threading.Thread.Sleep(DeepLSpider._Delay_2);
+                System.Threading.Thread.Sleep(DeepLSpider._Delay_3);
             }
 
             _visitor.Reset();

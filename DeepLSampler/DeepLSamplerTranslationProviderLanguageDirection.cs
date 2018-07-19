@@ -21,7 +21,8 @@ namespace DeepLSampler
         private DeepLSamplerTranslationProviderElementVisitor _visitor;
         //private Dictionary<string, string> _listOfTranslations;
 
-        // string borrar = DeepLSamplerProviderConfDialog.deepL.translateText("i think i hit the jackpot today"); // new test
+        private static bool search_segment_locked = false;
+
 
         // helper function
         /// Creates the translation unit as it is later shown in the Translation Results
@@ -128,6 +129,12 @@ namespace DeepLSampler
         {
             string dl_trans;
 
+            // wait loop to avoid concurrent calls overlapping
+            while (search_segment_locked)
+            {
+                System.Threading.Thread.Sleep(DeepLSpider._Delay_2);
+            }
+
             _visitor.Reset();
             foreach (var element in segment.Elements)
             {
@@ -149,6 +156,8 @@ namespace DeepLSampler
                 DeepLSamplerTranslationProvider.log.WriteLine("--> translation: " + dl_trans, true);
 
             }
+
+            search_segment_locked = false;
 
             // concordance searches WOULD go here (but not supported)
             return results;

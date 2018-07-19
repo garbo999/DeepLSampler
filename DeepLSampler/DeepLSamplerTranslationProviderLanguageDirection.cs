@@ -156,7 +156,7 @@ namespace DeepLSampler
 
         public SearchResults[] SearchSegments(SearchSettings settings, Segment[] segments)
         {
-            //throw new NotImplementedException();
+            DeepLSamplerTranslationProvider.log.WriteLine("SearchSegments executed for segment count: " + segments.Length, true);
 
             SearchResults[] results = new SearchResults[segments.Length];
             for (int p = 0; p < segments.Length; ++p)
@@ -169,7 +169,8 @@ namespace DeepLSampler
 
         public SearchResults[] SearchSegmentsMasked(SearchSettings settings, Segment[] segments, bool[] mask)
         {
-            //throw new NotImplementedException();
+            DeepLSamplerTranslationProvider.log.WriteLine("SearchSegmentsMasked executed for segment count: " + segments.Length, true);
+
             if (segments == null)
             {
                 throw new ArgumentNullException("segments in SearchSegmentsMasked");

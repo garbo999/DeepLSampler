@@ -21,7 +21,9 @@ namespace DeepLSampler
         private DeepLSamplerTranslationProviderElementVisitor _visitor;
         //private Dictionary<string, string> _listOfTranslations;
 
-        // string borrar = DeepLSamplerProviderConfDialog.deepL.translateText("i think i hit the jackpot today"); // new test
+        //private static bool search_segment_locked = false;
+
+        private static Object lockGuard = new Object();
 
         // helper function
         /// Creates the translation unit as it is later shown in the Translation Results
@@ -126,37 +128,49 @@ namespace DeepLSampler
 
         public SearchResults SearchSegment(SearchSettings settings, Segment segment)
         {
-            string dl_trans;
-
-            _visitor.Reset();
-            foreach (var element in segment.Elements)
+            lock (lockGuard)
             {
-                element.AcceptSegmentElementVisitor(_visitor);
+                string dl_trans;
+
+                // wait loop to avoid concurrent calls overlapping
+                //while (DeepLSpider.search_segment_locked)
+                //{
+                //    System.Threading.Thread.Sleep(DeepLSpider._Delay_3);
+                //}
+
+                _visitor.Reset();
+                foreach (var element in segment.Elements)
+                {
+                    element.AcceptSegmentElementVisitor(_visitor);
+                }
+
+                DeepLSamplerTranslationProvider.log.WriteLine("SearchSegment executed for source: " + _visitor.PlainText, true);
+
+                SearchResults results = new SearchResults();
+                results.SourceSegment = segment.Duplicate();
+
+                // Look up the currently selected segment in the collection (normal segment lookup).
+                if (settings.Mode == SearchMode.NormalSearch)
+                {
+                    Segment translation = new Segment(_languageDirection.TargetCulture);
+                    dl_trans = DeepLSamplerTranslationProvider.deepL.translateText(_visitor.PlainText);
+                    translation.Add(dl_trans);
+                    results.Add(CreateSearchResult(segment, translation, _visitor.PlainText, segment.HasTags));
+                    DeepLSamplerTranslationProvider.log.WriteLine("--> SearchSegment gets translation: ***" + dl_trans + "*** for source: " + _visitor.PlainText, true);
+
+                }
+
+                //DeepLSpider.search_segment_locked = false;
+
+                // concordance searches WOULD go here (but not supported)
+                return results;
+
             }
-
-            //DeepLSamplerTranslationProvider.log.WriteLine("SearchSegment executed for source: " + _visitor.PlainText, true);
-
-            SearchResults results = new SearchResults();
-            results.SourceSegment = segment.Duplicate();
-
-            // Look up the currently selected segment in the collection (normal segment lookup).
-            if (settings.Mode == SearchMode.NormalSearch)
-            {
-                Segment translation = new Segment(_languageDirection.TargetCulture);
-                dl_trans = DeepLSamplerTranslationProvider.deepL.translateText(_visitor.PlainText);
-                translation.Add(dl_trans);
-                results.Add(CreateSearchResult(segment, translation, _visitor.PlainText, segment.HasTags));
-                //DeepLSamplerTranslationProvider.log.WriteLine("--> translation: " + dl_trans, true);
-
-            }
-
-            // concordance searches WOULD go here (but not supported)
-            return results;
         }
 
         public SearchResults[] SearchSegments(SearchSettings settings, Segment[] segments)
         {
-            //DeepLSamplerTranslationProvider.log.WriteLine("SearchSegments executed for segment count: " + segments.Length, true);
+            //throw new NotImplementedException();
 
             SearchResults[] results = new SearchResults[segments.Length];
             for (int p = 0; p < segments.Length; ++p)
@@ -169,8 +183,7 @@ namespace DeepLSampler
 
         public SearchResults[] SearchSegmentsMasked(SearchSettings settings, Segment[] segments, bool[] mask)
         {
-            //DeepLSamplerTranslationProvider.log.WriteLine("SearchSegmentsMasked executed for segment count: " + segments.Length, true);
-
+            //throw new NotImplementedException();
             if (segments == null)
             {
                 throw new ArgumentNullException("segments in SearchSegmentsMasked");

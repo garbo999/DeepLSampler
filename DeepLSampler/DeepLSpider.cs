@@ -36,12 +36,8 @@ namespace DeepLSampler
         public IWebElement SourceMenuDropdown { get; set; }
         public IWebElement TargetMenuDropdown { get; set; }
 
-        //public static bool search_segment_locked = false;
-
         public DeepLSpider() // could be static since this is class variable? --> probably no since it is instantiated?
         {
-            //if (_DEBUG) Console.WriteLine("Creating DeepLSpider instance.");
-
             this.Driver = new FirefoxDriver();
 
             this.SrcLang = _default_source_lang;

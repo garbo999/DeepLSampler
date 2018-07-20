@@ -21,8 +21,6 @@ namespace DeepLSampler
         private DeepLSamplerTranslationProviderElementVisitor _visitor;
         //private Dictionary<string, string> _listOfTranslations;
 
-        //private static bool search_segment_locked = false;
-
         private static Object lockGuard = new Object();
 
         // helper function
@@ -122,7 +120,6 @@ namespace DeepLSampler
 
         public bool CanReverseLanguageDirection
         {
-            //get { throw new NotImplementedException(); }
             get { return false; }
         }
 
@@ -131,12 +128,6 @@ namespace DeepLSampler
             lock (lockGuard)
             {
                 string dl_trans;
-
-                // wait loop to avoid concurrent calls overlapping
-                //while (DeepLSpider.search_segment_locked)
-                //{
-                //    System.Threading.Thread.Sleep(DeepLSpider._Delay_3);
-                //}
 
                 _visitor.Reset();
                 foreach (var element in segment.Elements)
@@ -160,18 +151,12 @@ namespace DeepLSampler
 
                 }
 
-                //DeepLSpider.search_segment_locked = false;
-
-                // concordance searches WOULD go here (but not supported)
                 return results;
-
             }
         }
 
         public SearchResults[] SearchSegments(SearchSettings settings, Segment[] segments)
         {
-            //throw new NotImplementedException();
-
             SearchResults[] results = new SearchResults[segments.Length];
             for (int p = 0; p < segments.Length; ++p)
             {
@@ -183,7 +168,6 @@ namespace DeepLSampler
 
         public SearchResults[] SearchSegmentsMasked(SearchSettings settings, Segment[] segments, bool[] mask)
         {
-            //throw new NotImplementedException();
             if (segments == null)
             {
                 throw new ArgumentNullException("segments in SearchSegmentsMasked");
@@ -212,7 +196,6 @@ namespace DeepLSampler
 
         public SearchResults SearchText(SearchSettings settings, string segment)
         {
-            //throw new NotImplementedException();
             Segment s = new Sdl.LanguagePlatform.Core.Segment(_languageDirection.SourceCulture);
             s.Add(segment);
             return SearchSegment(settings, s);
@@ -221,13 +204,11 @@ namespace DeepLSampler
 
         public SearchResults SearchTranslationUnit(SearchSettings settings, TranslationUnit translationUnit)
         {
-            //throw new NotImplementedException();
             return SearchSegment(settings, translationUnit.SourceSegment);
         }
 
         public SearchResults[] SearchTranslationUnits(SearchSettings settings, TranslationUnit[] translationUnits)
         {
-            //throw new NotImplementedException();
             SearchResults[] results = new SearchResults[translationUnits.Length];
             for (int p = 0; p < translationUnits.Length; ++p)
             {
@@ -239,7 +220,6 @@ namespace DeepLSampler
 
         public SearchResults[] SearchTranslationUnitsMasked(SearchSettings settings, TranslationUnit[] translationUnits, bool[] mask)
         {
-            //throw new NotImplementedException();
             List<SearchResults> results = new List<SearchResults>();
 
             int i = 0;

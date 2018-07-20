@@ -134,7 +134,7 @@ namespace DeepLSampler
                 element.AcceptSegmentElementVisitor(_visitor);
             }
 
-            DeepLSamplerTranslationProvider.log.WriteLine("SearchSegment executed for source: " + _visitor.PlainText, true);
+            //DeepLSamplerTranslationProvider.log.WriteLine("SearchSegment executed for source: " + _visitor.PlainText, true);
 
             SearchResults results = new SearchResults();
             results.SourceSegment = segment.Duplicate();
@@ -146,7 +146,7 @@ namespace DeepLSampler
                 dl_trans = DeepLSamplerTranslationProvider.deepL.translateText(_visitor.PlainText);
                 translation.Add(dl_trans);
                 results.Add(CreateSearchResult(segment, translation, _visitor.PlainText, segment.HasTags));
-                DeepLSamplerTranslationProvider.log.WriteLine("--> translation: " + dl_trans, true);
+                //DeepLSamplerTranslationProvider.log.WriteLine("--> translation: " + dl_trans, true);
 
             }
 
@@ -156,7 +156,7 @@ namespace DeepLSampler
 
         public SearchResults[] SearchSegments(SearchSettings settings, Segment[] segments)
         {
-            DeepLSamplerTranslationProvider.log.WriteLine("SearchSegments executed for segment count: " + segments.Length, true);
+            //DeepLSamplerTranslationProvider.log.WriteLine("SearchSegments executed for segment count: " + segments.Length, true);
 
             SearchResults[] results = new SearchResults[segments.Length];
             for (int p = 0; p < segments.Length; ++p)
@@ -169,7 +169,7 @@ namespace DeepLSampler
 
         public SearchResults[] SearchSegmentsMasked(SearchSettings settings, Segment[] segments, bool[] mask)
         {
-            DeepLSamplerTranslationProvider.log.WriteLine("SearchSegmentsMasked executed for segment count: " + segments.Length, true);
+            //DeepLSamplerTranslationProvider.log.WriteLine("SearchSegmentsMasked executed for segment count: " + segments.Length, true);
 
             if (segments == null)
             {

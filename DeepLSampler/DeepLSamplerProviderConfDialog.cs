@@ -21,23 +21,10 @@ namespace DeepLSampler
             InitializeComponent();
             UpdateDialog(); // initialize form here!
 
-            // attempt to open connection to DeepL if not yet established --> connection should already be opened in DeepLSamplerTranslationProvider
-            DeepLSamplerTranslationProvider.OpenConnection();
-
             if (DeepLSamplerTranslationProvider.log != null)
             {
                 DeepLSamplerTranslationProvider.log.WriteLine("DeepLSamplerProviderConfDialog instantiated", true);
             }
-
-            // this code could go into UpdateDialog() or be deleted?
-            string source_lang = "EN";
-            string target_lang = "IT";
-
-            DeepLSamplerTranslationProvider.deepL.setLanguages(source_lang, target_lang);
-
-            textBox1.Text = "i think i hit the jackpot today";
-            textBox2.Text = DeepLSamplerTranslationProvider.deepL.translateText("i think i hit the jackpot today");
-
         }
 
         public DeepLSamplerTranslationOptions Options
@@ -50,6 +37,8 @@ namespace DeepLSampler
         {
             //textBox3.Text = DeepLSamplerTranslationProvider.connectionError;
             //textBox3.Text = Path.GetTempPath();
+            textBox1.Text = DeepLSpider._default_source_sentence;
+
             textBox4.Text = DeepLSpider._Delay_1.ToString();
             textBox5.Text = DeepLSpider._Delay_2.ToString();
             textBox6.Text = DeepLSpider._Max_wait_count.ToString();
@@ -74,7 +63,14 @@ namespace DeepLSampler
 
         private void btn_translate_Click(object sender, EventArgs e)
         {
-            textBox2.Text = DeepLSamplerTranslationProvider.deepL.translateText(textBox1.Text);
+            // open connection to DeepL if required --> connection could have already been opened in DeepLSamplerTranslationProvider
+            DeepLSamplerTranslationProvider.OpenConnection();
+
+            if (DeepLSamplerTranslationProvider.deepL != null)
+            {
+                DeepLSamplerTranslationProvider.deepL.setLanguages(DeepLSpider._default_source_lang, DeepLSpider._default_target_lang);
+                textBox2.Text = DeepLSamplerTranslationProvider.deepL.translateText(textBox1.Text);
+            }
         }
 
         private void btnSaveSettings_Click(object sender, EventArgs e)

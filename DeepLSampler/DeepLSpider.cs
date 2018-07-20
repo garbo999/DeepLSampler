@@ -14,9 +14,11 @@ namespace DeepLSampler
         // Currently supported languages are English, German, French, Spanish, Italian, Dutch, and Polish
         // EN, DE, FR, ES, IT, NL, PL
 
-        const string _default_source_lang = "DE";
-        const string _default_target_lang = "EN";
-        const bool _DEBUG = false;
+        public const string _default_source_lang = "DE";
+        public const string _default_target_lang = "EN";
+        public const string _default_source_sentence = "Linguee heißt jetzt DeepL und geht mit einem neuen maschinellen Übersetzer auf den Markt.";
+
+        public const bool _DEBUG = false;
 
         // need to delete underscores
         public static bool _Delays_enabled = true;

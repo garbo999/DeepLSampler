@@ -21,7 +21,7 @@ namespace DeepLSampler
         private DeepLSamplerTranslationProviderElementVisitor _visitor;
         //private Dictionary<string, string> _listOfTranslations;
 
-        private static bool search_segment_locked = false;
+        //private static bool search_segment_locked = false;
 
 
         // helper function
@@ -130,10 +130,10 @@ namespace DeepLSampler
             string dl_trans;
 
             // wait loop to avoid concurrent calls overlapping
-            while (search_segment_locked)
-            {
-                System.Threading.Thread.Sleep(DeepLSpider._Delay_3);
-            }
+            //while (DeepLSpider.search_segment_locked)
+            //{
+            //    System.Threading.Thread.Sleep(DeepLSpider._Delay_3);
+            //}
 
             _visitor.Reset();
             foreach (var element in segment.Elements)
@@ -153,11 +153,11 @@ namespace DeepLSampler
                 dl_trans = DeepLSamplerTranslationProvider.deepL.translateText(_visitor.PlainText);
                 translation.Add(dl_trans);
                 results.Add(CreateSearchResult(segment, translation, _visitor.PlainText, segment.HasTags));
-                DeepLSamplerTranslationProvider.log.WriteLine("--> translation: " + dl_trans, true);
+                DeepLSamplerTranslationProvider.log.WriteLine("--> SearchSegment gets translation: ***" + dl_trans + "*** for source: " + _visitor.PlainText, true);
 
             }
 
-            search_segment_locked = false;
+            //DeepLSpider.search_segment_locked = false;
 
             // concordance searches WOULD go here (but not supported)
             return results;

@@ -30,31 +30,38 @@ namespace DeepLSampler
 
         public static string _DeepLURL = "https://www.deepl.com/translator";
 
-        public string SrcLang { get; set; }
-        public string TgtLang { get; set; }
-        public string Browser { get; set; }
-        public bool Headless { get; set; }
-        public IWebDriver Driver { get; set; }
-        public IWebElement SourceMenuDropdown { get; set; }
-        public IWebElement TargetMenuDropdown { get; set; }
+        public static string SrcLang; // { get; set; } for all of this when converted to static
+        public static string TgtLang;
+        public static string Browser;
+        public static bool Headless;
+        public static IWebDriver Driver;
+        public static IWebElement SourceMenuDropdown;
+        public static IWebElement TargetMenuDropdown;
 
-        public DeepLSpider() // could be static since this is class variable? --> probably no since it is instantiated?
+        public DeepLSpider(bool headless) 
         {
-            this.Driver = new FirefoxDriver();
+            // headless option
+            FirefoxOptions options = new FirefoxOptions();
+            if (headless)
+            {
+                options.AddArguments("--headless");
+            }
 
-            this.SrcLang = _default_source_lang;
-            this.TgtLang = _default_target_lang;
+            Driver = new FirefoxDriver(options); // "this" not needed?
 
-            this.Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+            SrcLang = _default_source_lang;
+            TgtLang = _default_target_lang;
 
-            this.Driver.Navigate().GoToUrl(DeepLSpider._DeepLURL);
+            Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+
+            Driver.Navigate().GoToUrl(DeepLSpider._DeepLURL);
 
             if (_Delays_enabled) System.Threading.Thread.Sleep(DeepLSpider._Delay_1);
 
             // grab and save SOURCE and TARGET language selection dropdowns
-            IList<IWebElement> lang_dropdown_selectors = this.Driver.FindElements(By.ClassName("lmt__language_select__opener"));
-            this.SourceMenuDropdown = lang_dropdown_selectors[0];
-            this.TargetMenuDropdown = lang_dropdown_selectors[1];
+            IList<IWebElement> lang_dropdown_selectors = Driver.FindElements(By.ClassName("lmt__language_select__opener"));
+            SourceMenuDropdown = lang_dropdown_selectors[0];
+            TargetMenuDropdown = lang_dropdown_selectors[1];
 
         }
 
@@ -62,18 +69,18 @@ namespace DeepLSampler
         {
             // allowed values (strings) =  EN, DE, FR, ES, IT, NL, PL
 
-            this.SrcLang = source_lang;
-            this.TgtLang = target_lang;
+            SrcLang = source_lang;
+            TgtLang = target_lang;
 
             // Open SOURCE language selection dropdown menu and click desired language
-            this.SourceMenuDropdown.Click();
-            IWebElement lang_selector_source = this.Driver.FindElement(By.CssSelector($"div.lmt__language_select--source li[dl-value='{source_lang}']"));
+            SourceMenuDropdown.Click();
+            IWebElement lang_selector_source = Driver.FindElement(By.CssSelector($"div.lmt__language_select--source li[dl-value='{source_lang}']"));
             if (_Delays_enabled) System.Threading.Thread.Sleep(_Delay_2);
             lang_selector_source.Click();
 
             // Open TARGET language selection dropdown menu and click desired language
-            this.TargetMenuDropdown.Click();
-            IWebElement lang_selector_target = this.Driver.FindElement(By.CssSelector($"div.lmt__language_select--target li[dl-value='{target_lang}']"));
+            TargetMenuDropdown.Click();
+            IWebElement lang_selector_target = Driver.FindElement(By.CssSelector($"div.lmt__language_select--target li[dl-value='{target_lang}']"));
             if (_Delays_enabled) System.Threading.Thread.Sleep(_Delay_2);
             lang_selector_target.Click();
         }
@@ -82,9 +89,9 @@ namespace DeepLSampler
         {
             DeepLSamplerTranslationProvider.log.WriteLine("DeepLSpider.translateText executed for source: " + source_text, true);
 
-            IList<IWebElement> sources = this.Driver.FindElements(By.ClassName("lmt__source_textarea"));
+            IList<IWebElement> sources = Driver.FindElements(By.ClassName("lmt__source_textarea"));
             IWebElement source_box = sources[0];
-            IList<IWebElement> targets = this.Driver.FindElements(By.ClassName("lmt__target_textarea"));
+            IList<IWebElement> targets = Driver.FindElements(By.ClassName("lmt__target_textarea"));
             IWebElement target_box = targets[0];
 
             source_box.Clear();

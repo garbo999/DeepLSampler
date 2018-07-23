@@ -54,6 +54,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.btnShowAdvanced = new System.Windows.Forms.Button();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.grpDeepLconn.SuspendLayout();
             this.grpConnError.SuspendLayout();
             this.grpSpiderParams.SuspendLayout();
@@ -166,6 +167,7 @@
             // 
             // grpSpiderParams
             // 
+            this.grpSpiderParams.Controls.Add(this.checkBox2);
             this.grpSpiderParams.Controls.Add(this.checkBox1);
             this.grpSpiderParams.Controls.Add(this.textBox8);
             this.grpSpiderParams.Controls.Add(this.label8);
@@ -181,7 +183,7 @@
             this.grpSpiderParams.Controls.Add(this.label4);
             this.grpSpiderParams.Location = new System.Drawing.Point(30, 270);
             this.grpSpiderParams.Name = "grpSpiderParams";
-            this.grpSpiderParams.Size = new System.Drawing.Size(551, 262);
+            this.grpSpiderParams.Size = new System.Drawing.Size(551, 291);
             this.grpSpiderParams.TabIndex = 4;
             this.grpSpiderParams.TabStop = false;
             this.grpSpiderParams.Text = "Spider parameters";
@@ -218,7 +220,7 @@
             // 
             // btnRestoreDefaults
             // 
-            this.btnRestoreDefaults.Location = new System.Drawing.Point(166, 226);
+            this.btnRestoreDefaults.Location = new System.Drawing.Point(166, 244);
             this.btnRestoreDefaults.Name = "btnRestoreDefaults";
             this.btnRestoreDefaults.Size = new System.Drawing.Size(137, 23);
             this.btnRestoreDefaults.TabIndex = 9;
@@ -227,7 +229,7 @@
             // 
             // btnSaveSettings
             // 
-            this.btnSaveSettings.Location = new System.Drawing.Point(9, 226);
+            this.btnSaveSettings.Location = new System.Drawing.Point(9, 244);
             this.btnSaveSettings.Name = "btnSaveSettings";
             this.btnSaveSettings.Size = new System.Drawing.Size(127, 23);
             this.btnSaveSettings.TabIndex = 8;
@@ -237,7 +239,7 @@
             // 
             // textBox7
             // 
-            this.textBox7.Location = new System.Drawing.Point(106, 185);
+            this.textBox7.Location = new System.Drawing.Point(106, 207);
             this.textBox7.Name = "textBox7";
             this.textBox7.Size = new System.Drawing.Size(428, 20);
             this.textBox7.TabIndex = 7;
@@ -245,7 +247,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(6, 188);
+            this.label7.Location = new System.Drawing.Point(6, 210);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(93, 13);
             this.label7.TabIndex = 6;
@@ -309,6 +311,16 @@
             this.btnShowAdvanced.UseVisualStyleBackColor = true;
             this.btnShowAdvanced.Click += new System.EventHandler(this.btnShowAdvanced_Click);
             // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Location = new System.Drawing.Point(13, 176);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(148, 17);
+            this.checkBox2.TabIndex = 14;
+            this.checkBox2.Text = "Browser \"headless\" mode";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            // 
             // DeepLSamplerProviderConfDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -361,5 +373,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Button btnShowAdvanced;
+        private System.Windows.Forms.CheckBox checkBox2;
     }
 }

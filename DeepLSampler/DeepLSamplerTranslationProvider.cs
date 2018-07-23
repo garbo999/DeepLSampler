@@ -18,6 +18,7 @@ namespace DeepLSampler
         // spider variables
         public static DeepLSpider deepL = null;
         public static string connectionError = "";
+        public static bool headless = false; // also exists in DeepLSpider.cs
 
         // logger variable
         public static Logger log = null;
@@ -53,7 +54,7 @@ namespace DeepLSampler
             {
                 try
                 {
-                    deepL = new DeepLSpider();
+                    deepL = new DeepLSpider(headless);
                 }
                 catch (Exception e)
                 {

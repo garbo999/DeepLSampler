@@ -86,7 +86,7 @@ namespace DeepLSampler
 
             // TRY / CATCH !!!!
             // without the if statement, this was repeated many times!
-            if (DeepLSamplerTranslationProvider.deepL.SrcLang != _source_lang || DeepLSamplerTranslationProvider.deepL.TgtLang != _target_lang)
+            if (DeepLSpider.SrcLang != _source_lang || DeepLSpider.TgtLang != _target_lang)
             {
                 DeepLSamplerTranslationProvider.deepL.setLanguages(_source_lang, _target_lang);
             }
